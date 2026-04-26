@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algebraic Adventures - Advertisement</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: #0a0a1a;
+  font-family: 'Fredoka', sans-serif;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+.ad-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* HERO SECTION */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(180deg, #1a3a2a 0%, #0d1f14 40%, #2a1a0a 70%, #1a0a00 100%);
+  border-radius: 24px;
+  border: 3px solid #3a7a3a;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(2px 2px at 20% 15%, rgba(255,255,150,0.8), transparent),
+    radial-gradient(2px 2px at 60% 25%, rgba(255,255,150,0.6), transparent),
+    radial-gradient(2px 2px at 80% 10%, rgba(255,255,150,0.7), transparent),
+    radial-gradient(2px 2px at 40% 35%, rgba(255,255,150,0.5), transparent),
+    radial-gradient(2px 2px at 10% 30%, rgba(255,255,150,0.6), transparent),
+    radial-gradient(2px 2px at 90% 20%, rgba(255,255,150,0.4), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.game-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2.4em;
+  background: linear-gradient(180deg, #FFD700 0%, #FF8C00 50%, #FF4500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(255,165,0,0.5));
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.game-subtitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85em;
+  color: #7fff7f;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(0,255,0,0.3);
+}
+
+.hero-character {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+  animation: bounce 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(0,180,255,0.6));
+  margin-bottom: 20px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.tagline {
+  font-size: 1.3em;
+  color: #e0e0e0;
+  font-weight: 600;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.tagline em {
+  color: #FFD700;
+  font-style: normal;
+}
+
+/* BIOME SECTIONS */
+.biomes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.biome-card {
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.biome-card:hover {
+  transform: translateY(-4px);
+}
+
+.biome-forest {
+  background: linear-gradient(135deg, #0d2b0d 0%, #1a4a1a 50%, #0d2b0d 100%);
+  border-color: #2d7a2d;
+  box-shadow: 0 8px 30px rgba(0,100,0,0.3);
+}
+.biome-forest:hover { box-shadow: 0 12px 40px rgba(0,150,0,0.4); }
+
+.biome-desert {
+  background: linear-gradient(135deg, #3a2a0a 0%, #5a4a1a 50%, #3a2a0a 100%);
+  border-color: #8a7a3a;
+  box-shadow: 0 8px 30px rgba(150,120,0,0.3);
+}
+.biome-desert:hover { box-shadow: 0 12px 40px rgba(180,150,0,0.4); }
+
+.biome-arctic {
+  background: linear-gradient(135deg, #0a1a3a 0%, #1a3a5a 50%, #0a1a3a 100%);
+  border-color: #3a6a9a;
+  box-shadow: 0 8px 30px rgba(0,80,160,0.3);
+}
+.biome-arctic:hover { box-shadow: 0 12px 40px rgba(0,120,200,0.4); }
+
+.biome-sprites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.biome-sprite-row {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.biome-sprite {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  transition: transform 0.3s;
+}
+
+.biome-sprite.small {
+  width: 48px;
+  height: 48px;
+}
+
+.biome-sprite:hover {
+  transform: scale(1.2);
+}
+
+.biome-info {
+  flex: 1;
+}
+
+.biome-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.biome-forest .biome-name { color: #5aff5a; }
+.biome-desert .biome-name { color: #ffd700; }
+.biome-arctic .biome-name { color: #7ac5ff; }
+
+.biome-desc {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #c0c0c0;
+}
+
+.biome-riddle {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6em;
+  line-height: 1.8;
+  position: relative;
+}
+
+.biome-forest .biome-riddle {
+  background: rgba(0,80,0,0.3);
+  border: 1px solid #2d7a2d;
+  color: #a0ffa0;
+}
+.biome-desert .biome-riddle {
+  background: rgba(80,60,0,0.3);
+  border: 1px solid #8a7a3a;
+  color: #ffe090;
+}
+.biome-arctic .biome-riddle {
+  background: rgba(0,40,80,0.3);
+  border: 1px solid #3a6a9a;
+  color: #a0d0ff;
+}
+
+.riddle-label {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  margin-bottom: 6px;
+  letter-spacing: 2px;
+}
+.biome-forest .riddle-label { background: #2d7a2d; color: #fff; }
+.biome-desert .riddle-label { background: #8a6a1a; color: #fff; }
+.biome-arctic .riddle-label { background: #2a5a8a; color: #fff; }
+
+/* KEY ICON */
+.key-icon {
+  width: 36px;
+  height: 36px;
+  image-rendering: pixelated;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 6px rgba(255,200,0,0.6));
+}
+
+/* FOOTER CTA */
+.cta {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,165,0,0.05) 50%, transparent 100%);
+}
+
+.cta-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.2em;
+  color: #FFD700;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(255,165,0,0.4);
+}
+
+.cta-features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95em;
+  color: #b0b0b0;
+}
+
+.feature-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.feature-dot.green { background: #5aff5a; box-shadow: 0 0 8px rgba(0,255,0,0.4); }
+.feature-dot.gold { background: #ffd700; box-shadow: 0 0 8px rgba(255,200,0,0.4); }
+.feature-dot.blue { background: #7ac5ff; box-shadow: 0 0 8px rgba(0,150,255,0.4); }
+
+.key-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.key-row img {
+  width: 40px;
+  height: 40px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 8px rgba(255,200,0,0.5));
+  animation: key-float 2s ease-in-out infinite;
+}
+.key-row img:nth-child(2) { animation-delay: 0.3s; }
+.key-row img:nth-child(3) { animation-delay: 0.6s; }
+.key-row img:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes key-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .game-title { font-size: 1.4em; }
+  .biome-card { flex-direction: column; text-align: center; }
+  .biome-sprite { width: 48px; height: 48px; }
+  .biome-sprite.small { width: 36px; height: 36px; }
+  .cta-features { flex-direction: column; align-items: center; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ad-container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <img class="hero-character" src="data:image/png;base64,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" alt="Player Character">
+      <div class="game-title">ALGEBRAIC<br>ADVENTURES</div>
+      <div class="game-subtitle">A Math RPG Journey</div>
+      <p class="tagline">
+        Explore <em>three wild biomes</em>, befriend forest creatures, desert dwellers & arctic animals — and solve their algebra riddles to collect the <img class="key-icon" src="data:image/png;base64,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" alt="key"> keys!
+      </p>
+    </div>
+  </div>
+
+  <!-- BIOME CARDS -->
+  <div class="biomes">
+
+    <!-- FOREST -->
+    <div class="biome-card biome-forest">
+      <div class="biome-sprites">
+        <div class="biome-sprite-row">
+          <img class="biome-sprite" src="data:image/png;base64,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" alt="Frog">
+          <img class="biome-sprite" src="data:image/png;base64,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" alt="Deer">
+        </div>
+        <div class="biome-sprite-row">
+          <img class="biome-sprite small" src="data:image/png;base64,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" alt="Wolf">
+          <img class="biome-sprite small" src="data:image/png;base64,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" alt="Fox">
+        </div>
+      </div>
+      <div class="biome-info">
+        <div class="biome-name">&#x1F332; THE ENCHANTED FOREST</div>
+        <p class="biome-desc">
+          Navigate winding rivers and dirt paths through a magical forest. Four wise animals guard four keys — a frog, a deer, a wolf, and a fox. Answer their riddles to unlock the gate!
+        </p>
+        <div class="biome-riddle">
+          <div class="riddle-label">SAMPLE RIDDLE</div>
+          <br>"15 frogs sit on a log. 6 just arrived. How many were there to start?"
+        </div>
+      </div>
+    </div>
+
+    <!-- DESERT -->
+    <div class="biome-card biome-desert">
+      <div class="biome-sprites">
+        <img class="biome-sprite" src="data:image/png;base64,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" alt="Meerkat" style="width:80px;height:80px;">
+      </div>
+      <div class="biome-info">
+        <div class="biome-name">&#x1F3DC; THE SCORCHING DESERT</div>
+        <p class="biome-desc">
+          Cross the burning sands to reach the ancient pyramid. But a clever meerkat blocks the entrance! Solve its algebra challenge to earn the pyramid key and enter.
+        </p>
+        <div class="biome-riddle">
+          <div class="riddle-label">SAMPLE RIDDLE</div>
+          <br>"If 2x - 4 = 10, what is x?"
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCTIC -->
+    <div class="biome-card biome-arctic">
+      <div class="biome-sprites">
+        <img class="biome-sprite" src="data:image/png;base64,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" alt="Penguin" style="width:80px;height:80px;">
+      </div>
+      <div class="biome-info">
+        <div class="biome-name">&#x2744; THE FROZEN ARCTIC</div>
+        <p class="biome-desc">
+          Brave the icy tundra and frozen lakes. A wise penguin guards the path ahead. Crack its math puzzle to keep moving through the snow!
+        </p>
+        <div class="biome-riddle">
+          <div class="riddle-label">SAMPLE RIDDLE</div>
+          <br>"Solve for y: 3y + 6 = 21"
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta-text">COLLECT ALL THE KEYS. CONQUER EVERY BIOME.</div>
+    <div class="cta-features">
+      <div class="feature"><span class="feature-dot green"></span> 3 Unique Biomes</div>
+      <div class="feature"><span class="feature-dot gold"></span> Math Riddles & Algebra</div>
+      <div class="feature"><span class="feature-dot blue"></span> Choose Your Character</div>
+    </div>
+    <div class="key-row">
+      <img src="data:image/png;base64,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" alt="Key 1">
+      <img src="data:image/png;base64,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" alt="Key 2">
+      <img src="data:image/png;base64,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" alt="Key 3">
+      <img src="data:image/png;base64,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" alt="Key 4">
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
